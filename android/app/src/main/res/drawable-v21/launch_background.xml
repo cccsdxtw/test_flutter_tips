@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+   <item android:drawable="@color/orange" />
+    <!-- 設置自定義紅色背景 -->
+    <item>
+        <shape>
+            <solid android:color="#FF0000" /> <!-- 設置背景為紅色 -->
+            <!-- 不使用 match_parent，這樣會避免錯誤 -->
+            <size android:width="100dp" android:height="100dp" /> <!-- 設置具體的寬高 -->
+        </shape>
+    </item>
+    <item>
+        <bitmap
+            android:src="@drawable/ic_launcher"
+            android:gravity="center" />
+    </item>
+</layer-list>
