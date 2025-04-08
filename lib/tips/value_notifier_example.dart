@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:test_flutter_tips/element/tip_button.dart';
 
-final logger = Logger();
+import '../globals_debug.dart';
 
 class ValueNotifierExample extends StatelessWidget {
   ValueNotifierExample({super.key});
@@ -11,7 +10,7 @@ class ValueNotifierExample extends StatelessWidget {
   final ValueNotifier<String> message = ValueNotifier<String>("Hello");
   final ValueNotifier<bool> isVisible = ValueNotifier<bool>(true);
   final ValueNotifier<List<String>> items =
-      ValueNotifier<List<String>>(["Item 1", "Item 2"]);
+  ValueNotifier<List<String>>(["Item 1", "Item 2"]);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,11 @@ class ValueNotifierExample extends StatelessWidget {
             valueListenable: counter,
             builder: (_, value, __) {
               logger.e("🔁 counter build: $value");
-              return Text("Counter: $value");
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center, // 置中
+                children:[Text("Counter: $value"),]
+              );
             },
           ),
           TipButton(
@@ -38,7 +41,11 @@ class ValueNotifierExample extends StatelessWidget {
             valueListenable: message,
             builder: (_, value, __) {
               logger.e("🔁 message build: $value");
-              return Text("Message: $value");
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center, // 置中
+                children: [Text("Message: $value")],
+              );
             },
           ),
           TipButton(
@@ -52,7 +59,14 @@ class ValueNotifierExample extends StatelessWidget {
               logger.e("🔁 isVisible build: $value");
               return Visibility(
                 visible: value,
-                child: const Text("你看得到我 👀"),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const [
+                    Text("你看得到我 👀"),
+                    Text("還有我 🙋"),
+                  ],
+                ),
               );
             },
           ),
@@ -66,6 +80,8 @@ class ValueNotifierExample extends StatelessWidget {
             builder: (_, value, __) {
               logger.e("🔁 items build: $value");
               return Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center, // 置中
                 children: value.map((e) => Text(e)).toList(),
               );
             },
