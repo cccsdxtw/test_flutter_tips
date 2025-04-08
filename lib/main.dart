@@ -4,6 +4,7 @@ import 'package:test_flutter_tips/tips/const.dart';
 import 'package:test_flutter_tips/tips/lnit_example.dart';
 import 'package:test_flutter_tips/tips/optimized_list_view.dart';
 import 'package:test_flutter_tips/tips/preparation.dart';
+import 'package:test_flutter_tips/tips/smart_list_view.dart';
 import 'package:test_flutter_tips/tips/value_notifier_example.dart';
 
 import 'element/tip_button.dart';
@@ -31,6 +32,7 @@ class HomePage extends StatelessWidget {
     '初始化時避免非同步': const InitExample(),
     'ValueNotifier元件': ValueNotifierExample(),
     'ListView簡易避免載入': const OptimizedListViewPage(),
+    'ListView真。三段載入': const SmartListView(),
     '這頁是預留的': const PreparationPage(),
   };
 
