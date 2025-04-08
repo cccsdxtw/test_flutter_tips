@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test_flutter_tips/tips/const.dart';
 import 'package:test_flutter_tips/tips/lnit_example.dart';
+import 'package:test_flutter_tips/tips/optimized_list_view.dart';
 import 'package:test_flutter_tips/tips/preparation.dart';
 import 'package:test_flutter_tips/tips/value_notifier_example.dart';
 
@@ -29,6 +30,7 @@ class HomePage extends StatelessWidget {
     '關於Const的復用': const Const(),
     '初始化時避免非同步': const InitExample(),
     'ValueNotifier元件': ValueNotifierExample(),
+    'ListView簡易避免載入': const OptimizedListViewPage(),
     '這頁是預留的': const PreparationPage(),
   };
 
@@ -46,7 +48,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<ButtonData> buttons = getButtons();
-
+    print('recoding.....');
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter 小技巧練習')),
       body: Center(
