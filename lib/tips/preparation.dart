@@ -1,8 +1,6 @@
 // 預備頁面
 import 'package:flutter/material.dart';
 
-import '../globals_debug.dart';
-
 class PreparationPage extends StatelessWidget {
   const PreparationPage({super.key});
 
