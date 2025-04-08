@@ -59,10 +59,10 @@ class ValueNotifierExample extends StatelessWidget {
               logger.e("🔁 isVisible build: $value");
               return Visibility(
                 visible: value,
-                child: Column(
+                child: const Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     Text("你看得到我 👀"),
                     Text("還有我 🙋"),
                   ],
