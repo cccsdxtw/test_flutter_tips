@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
     '初始化時避免非同步': const InitExample(),
     'ValueNotifier元件': ValueNotifierExample(),
     'ListView簡易避免載入': const OptimizedListViewPage(),
-    'ListView真。三段載入': const SmartListView(),
+    'ListView真。三段載入\n真的難用 不推薦': const SmartListView(),
     '這頁是預留的': const PreparationPage(),
   };
 
@@ -50,7 +50,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<ButtonData> buttons = getButtons();
-    print('recoding.....');
     return Scaffold(
       appBar: AppBar(title: const Text('Flutter 小技巧練習')),
       body: Center(
