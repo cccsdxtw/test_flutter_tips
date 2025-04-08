@@ -24,9 +24,12 @@ class TipButton extends StatelessWidget {
               ),
               padding: const EdgeInsets.symmetric(vertical: 16),
             ),
-            child: Text(
-              text,
-              style: const TextStyle(fontSize: 16),
+            child: Center( // 確保文字居中
+              child: Text(
+                text,
+                textAlign: TextAlign.center, // 確保文字在按鈕內居中
+                style: const TextStyle(fontSize: 16),
+              ),
             ),
           ),
         ),
