@@ -29,12 +29,12 @@ class HomePage extends StatelessWidget {
 
   // 頁面配置：這裡可以使用配置文件來進行更動態的頁面註冊
   final Map<String, Widget> pageMap = {
-    '關於Const的復用': const Const(),
-    '初始化時避免非同步': const InitExample(),
-    'ValueNotifier元件': ValueNotifierExample(),
-    'ListView簡易避免載入': const OptimizedListViewPage(),
-    'ListView真。三段載入\n真的難用 不推薦': const SmartListView(),
     '關於圖片讀取': const ImageLoading(),
+    'ListView真。三段載入\n真的難用 不推薦': const SmartListView(),
+    'ListView簡易避免載入': const OptimizedListViewPage(),
+    'ValueNotifier元件': ValueNotifierExample(),
+    '初始化時避免非同步': const InitExample(),
+    '關於Const的復用': const Const(),
     '這頁是預留的': const PreparationPage(),
   };
 
