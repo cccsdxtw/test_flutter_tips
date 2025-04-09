@@ -7,7 +7,8 @@ class AnimationPage extends StatefulWidget {
   State<AnimationPage> createState() => _AnimationPageState();
 }
 
-class _AnimationPageState extends State<AnimationPage> with SingleTickerProviderStateMixin {
+class _AnimationPageState extends State<AnimationPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _circleAnimation;
   late Animation<double> _progressAnimation;
@@ -59,11 +60,14 @@ class _AnimationPageState extends State<AnimationPage> with SingleTickerProvider
             ),
             const SizedBox(height: 50),
             // 進度條，獨立動畫更新
-            AnimatedBuilder(
-              animation: _progressAnimation,
-              builder: (context, child) {
-                return LinearProgressIndicator(value: _progressAnimation.value);
-              },
+            RepaintBoundary(
+              child: AnimatedBuilder(
+                animation: _progressAnimation,
+                builder: (context, child) {
+                  return LinearProgressIndicator(
+                      value: _progressAnimation.value);
+                },
+              ),
             ),
           ],
         ),
