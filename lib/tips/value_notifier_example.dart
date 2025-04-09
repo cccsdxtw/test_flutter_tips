@@ -3,9 +3,14 @@ import 'package:test_flutter_tips/element/tip_button.dart';
 
 import '../globals_debug.dart';
 
-class ValueNotifierExample extends StatelessWidget {
-  ValueNotifierExample({super.key});
+class ValueNotifierExample extends StatefulWidget {
+  const ValueNotifierExample({super.key});
 
+  @override
+  State<ValueNotifierExample> createState() => _ValueNotifierExampleState(); // 使用私有類別
+}
+
+class _ValueNotifierExampleState extends State<ValueNotifierExample> {
   final ValueNotifier<int> counter = ValueNotifier<int>(0);
   final ValueNotifier<String> message = ValueNotifier<String>("Hello");
   final ValueNotifier<bool> isVisible = ValueNotifier<bool>(true);
