@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:test_flutter_tips/tips/animation.dart';
 
 import 'package:test_flutter_tips/tips/image_loading.dart';
 import 'package:test_flutter_tips/tips/const.dart';
@@ -30,7 +31,7 @@ class HomePage extends StatelessWidget {
 
   // 頁面配置：這裡可以使用配置文件來進行更動態的頁面註冊
   final Map<String, Widget> pageMap = {
-
+    '動畫優化': const AnimationPage(),
     '關於圖片讀取': const ImageLoading(),
     'ListView真。三段載入\n真的難用 不推薦': const SmartListView(),
     'ListView簡易避免載入': const OptimizedListViewPage(),
