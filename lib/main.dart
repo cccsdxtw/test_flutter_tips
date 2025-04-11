@@ -1,19 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:test_flutter_tips/tips/animation.dart';
+import 'package:test_flutter_tips/tips/bloc_counter_page.dart';
+import 'package:test_flutter_tips/tips/bloc_e/counter_bloc.dart';
+import 'package:test_flutter_tips/tips/state_management_example.dart';
 
 import 'package:test_flutter_tips/tips/image_loading.dart';
 import 'package:test_flutter_tips/tips/const.dart';
 import 'package:test_flutter_tips/tips/lnit_example.dart';
 import 'package:test_flutter_tips/tips/optimized_list_view.dart';
 import 'package:test_flutter_tips/tips/preparation.dart';
+import 'package:test_flutter_tips/tips/provider_counter_example.dart';
+import 'package:test_flutter_tips/tips/riverpod_counter_example.dart';
 import 'package:test_flutter_tips/tips/smart_list_view.dart';
 import 'package:test_flutter_tips/tips/value_notifier_example.dart';
 
 import 'element/tip_button.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope( // 👈 用 ProviderScope 包住整個 app
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +32,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return  GetMaterialApp(home: HomePage()); //正常入口
     // return  const GetMaterialApp(home: const InitExample());  //測試入口 做什麼改什麼
   }
@@ -31,6 +43,13 @@ class HomePage extends StatelessWidget {
 
   // 頁面配置：這裡可以使用配置文件來進行更動態的頁面註冊
   final Map<String, Widget> pageMap = {
+    '共用狀態管理Bloc': BlocProvider(
+      create: (_) => CounterBloc(),
+      child: const BlocCounterPage(),
+    ),
+    '共用狀態管理Riverpod': const RiverpodCounterExample(),
+    '共用狀態管理Provider\n感覺以後可以用這個': const ProviderCounterExample(),
+    '狀態管理': const StateManagementExample(),
     '動畫優化': const AnimationPage(),
     '關於圖片讀取': const ImageLoading(),
     'ListView真。三段載入\n真的難用 不推薦': const SmartListView(),
@@ -64,7 +83,7 @@ class HomePage extends StatelessWidget {
           children: buttons.map((buttonData) {
             return TipButton(
               text: buttonData.text,
-              onPressed: () => Get.to(buttonData.targetPage),
+              onPressed: () => Get.to(  ProviderScope(child: buttonData.targetPage)),
             );
           }).toList(),
         ),
