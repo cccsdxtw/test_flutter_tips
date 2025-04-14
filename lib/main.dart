@@ -44,7 +44,8 @@ class HomePage extends StatelessWidget {
 
   // 頁面配置：這裡可以使用配置文件來進行更動態的頁面註冊
   final Map<String, Widget> pageMap = {
-    '自定義 Widget 的 shouldRebuild 控制': const CustomPainterExample(),
+
+    'ChangeNotifierProvider 搭配 CustomPainter + shouldRepaint': const CustomPainterExample(),
     '共用狀態管理Bloc': BlocProvider(
       create: (_) => CounterBloc(),
       child: const BlocCounterPage(),
