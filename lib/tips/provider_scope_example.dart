@@ -37,6 +37,7 @@ class ProviderScopeExample extends StatelessWidget {
           padding: EdgeInsets.all(20),
           child: Column(
             children: [
+              Divider(),
               WatchSection(),
               Divider(),
               ConsumerSection(),
