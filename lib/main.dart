@@ -6,6 +6,7 @@ import 'package:test_flutter_tips/tips/animation.dart';
 import 'package:test_flutter_tips/tips/bloc_counter_page.dart';
 import 'package:test_flutter_tips/tips/bloc_e/counter_bloc.dart';
 import 'package:test_flutter_tips/tips/custom_painter_example.dart';
+import 'package:test_flutter_tips/tips/did_update_example.dart';
 import 'package:test_flutter_tips/tips/state_management_example.dart';
 
 import 'package:test_flutter_tips/tips/image_loading.dart';
@@ -44,7 +45,7 @@ class HomePage extends StatelessWidget {
 
   // 頁面配置：這裡可以使用配置文件來進行更動態的頁面註冊
   final Map<String, Widget> pageMap = {
-
+    'DidUpdate 版': const DidUpdateExample(),
     'ChangeNotifierProvider 搭配 CustomPainter + shouldRepaint': const CustomPainterExample(),
     '共用狀態管理Bloc': BlocProvider(
       create: (_) => CounterBloc(),
