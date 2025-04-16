@@ -118,7 +118,7 @@ class SelectorSection extends StatelessWidget {
   }
 }
 
-// ✅ 用 Selector 的區塊（可選擇重建條件）
+// 更新按鈕
 class SelectorButton extends StatelessWidget {
   const SelectorButton({super.key});
 
