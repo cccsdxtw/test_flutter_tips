@@ -82,11 +82,26 @@ class ConsumerSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Consumer<CounterModel>(
-          builder: (_, model, __) {
-            logger.e("🔁 Consumer builder build");
-            return Text("Consumer: ${model.count}");
-          },
-        ),
+            builder: (_, model, child) {
+              logger.e("🔁 Consumer builder build");
+              return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Consumer: ${model.count}"),
+                    child!,
+                  ]);
+            },
+            child: const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(width: 10),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("🔒"),
+                        Text("不會重建的 child"),
+                      ])
+                ])),
       ],
     );
   }
