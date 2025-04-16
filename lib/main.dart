@@ -24,9 +24,12 @@ import 'element/tip_button.dart';
 
 void main() {
   runApp(
-    const ProviderScope( // 👈 用 ProviderScope 包住整個 app
-      child: MyApp(),
-    ),
+    const MaterialApp(
+        showPerformanceOverlay: false,//效能測試
+        home: ProviderScope(
+          // 👈 用 ProviderScope 包住整個 app
+          child: MyApp(),
+        )),
   );
 }
 
@@ -35,8 +38,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return  GetMaterialApp(home: HomePage()); //正常入口
+    return GetMaterialApp(home: HomePage()); //正常入口
     // return  const GetMaterialApp(home: const InitExample());  //測試入口 做什麼改什麼
   }
 }
@@ -48,7 +50,8 @@ class HomePage extends StatelessWidget {
   final Map<String, Widget> pageMap = {
     'Provider 三種管理法': const ProviderScopeExample(),
     'DidUpdate版 刷新管理': const DidUpdateExample(),
-    'ChangeNotifierProvider 搭配 CustomPainter + shouldRepaint': const CustomPainterExample(),
+    'ChangeNotifierProvider 搭配 CustomPainter + shouldRepaint':
+        const CustomPainterExample(),
     '共用狀態管理Bloc': BlocProvider(
       create: (_) => CounterBloc(),
       child: const BlocCounterPage(),
@@ -89,7 +92,8 @@ class HomePage extends StatelessWidget {
           children: buttons.map((buttonData) {
             return TipButton(
               text: buttonData.text,
-              onPressed: () => Get.to(  ProviderScope(child: buttonData.targetPage)),
+              onPressed: () =>
+                  Get.to(ProviderScope(child: buttonData.targetPage)),
             );
           }).toList(),
         ),
