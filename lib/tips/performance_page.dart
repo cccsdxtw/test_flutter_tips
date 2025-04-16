@@ -17,12 +17,32 @@ class PerformanceOverlayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => CounterModel(),
-      child: const MaterialApp(
-        showPerformanceOverlay: true,
-        home: _InternalPage(),
-      ),
+    debugPrint("🔁 Building PerformanceOverlayPage");
+    // 順手測試一個 網頁版效能
+    // 直接回傳一個 Overlay 包住 MaterialApp
+    return Overlay(
+      initialEntries: [
+        OverlayEntry(
+          builder: (_) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            showPerformanceOverlay: true,
+            home: ChangeNotifierProvider(
+              create: (_) => CounterModel(),
+              child: Scaffold(
+                appBar: AppBar(
+                  title: const Text('效能展示 AND 精準跟新'),
+                  leading: BackButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ),
+                body: const _InternalPage(),
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
@@ -34,24 +54,21 @@ class _InternalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint("🔁 _InternalPage build");
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Selector 精準更新')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const WatchAll(),       // 每次更新都 rebuild
-            const OnlyOdd(),       // 只有單數才 rebuild
-            const OnlyEven(),      // 只有雙數才 rebuild
-            const SizedBox(height: 30),
-            TipButton(
-              onPressed: () {
-                context.read<CounterModel>().increment();
-              },
-              text: '增加數值',
-            ),
-          ],
-        ),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const WatchAll(),       // 每次更新都 rebuild
+          const OnlyOdd(),       // 只有單數才 rebuild
+          const OnlyEven(),      // 只有雙數才 rebuild
+          const SizedBox(height: 30),
+          TipButton(
+            onPressed: () {
+              context.read<CounterModel>().increment();
+            },
+            text: '增加數值',
+          ),
+        ],
       ),
     );
   }
@@ -76,9 +93,7 @@ class OnlyOdd extends StatelessWidget {
   Widget build(BuildContext context) {
     return Selector<CounterModel, int>(
       selector: (_, model) => model.count,
-      shouldRebuild: (prev, next) {
-        return next.isOdd; // 只有是「單數」才會重建
-      },
+      shouldRebuild: (prev, next) => next.isOdd,
       builder: (context, count, _) {
         debugPrint("🔁 OnlyOdd build");
         return Text('單數更新：$count', style: const TextStyle(fontSize: 20));
@@ -94,9 +109,7 @@ class OnlyEven extends StatelessWidget {
   Widget build(BuildContext context) {
     return Selector<CounterModel, int>(
       selector: (_, model) => model.count,
-      shouldRebuild: (prev, next) {
-        return next.isEven; // 只有是「雙數」才會重建
-      },
+      shouldRebuild: (prev, next) => next.isEven,
       builder: (context, count, _) {
         debugPrint("🔁 OnlyEven build");
         return Text('雙數更新：$count', style: const TextStyle(fontSize: 20));

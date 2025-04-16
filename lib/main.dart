@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
 
   // 頁面配置：這裡可以使用配置文件來進行更動態的頁面註冊
   final Map<String, Widget> pageMap = {
-    '效能分析': const PerformanceOverlayPage(),
+    '效能展示 AND 精準跟新': const PerformanceOverlayPage(),
     'Provider 三種管理法': const ProviderScopeExample(),
     'DidUpdate版 刷新管理': const DidUpdateExample(),
     'ChangeNotifierProvider 搭配 CustomPainter + shouldRepaint':
