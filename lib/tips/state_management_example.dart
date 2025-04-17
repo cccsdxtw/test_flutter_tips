@@ -29,7 +29,7 @@ class StateManagementExample extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           CounterView(),
-          const IncrementButton(),
+          IncrementButton(),
         ])),
       ),
     );
